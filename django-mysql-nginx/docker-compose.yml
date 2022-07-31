@@ -21,7 +21,8 @@ services:
 
   app:
     build: ./python
-    command: uwsgi --socket :8001 --module app.wsgi --py-autoreload 1 --logto /tmp/tmp.log
+    # --moduleにはプロジェクト作成時に生成されるwsgi.pyを指定する
+    command: uwsgi --socket :8001 --module config.wsgi --py-autoreload 1 --logto /tmp/tmp.log
     volumes:
       - ./src:/workspace
     expose:
