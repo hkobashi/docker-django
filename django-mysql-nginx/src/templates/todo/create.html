@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<form action="{% url 'review_create' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">保存</button>
+  <a href="{% url 'review_index' %}" class="btn btn-secondary">一覧に戻る</a>
+</form>
+{% endblock main %}

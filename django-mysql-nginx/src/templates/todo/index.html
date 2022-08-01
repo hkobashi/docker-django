@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block main %}
+<table class="table tabla-hover">
+  <tr>
+    <th>title</th><th>body</th><th></th><th></th><th></th>
+  </tr>
+
+  <form method="GET" action="{% url 'review_index' %}">
+    {% csrf_token %}
+    <input type="text" name="keyword">
+    <button type="submit">検索</button>
+  </form>
+  {% for review in review_list %}
+      <tr>
+        <td>{{review.title}}</td>
+        <td>{{review.body}}</td>
+        <td>
+          <a href="{% url 'review_detail' review.id %}" class="btn btn-info">詳細</a>
+        </td>
+        <td>
+          <a href="{% url 'review_update' review.id %}" class="btn btn-info">更新</a>
+        </td>
+        <td>
+          <a href="{% url 'review_delete' review.id %}" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</a>
+        </td>
+      </tr>
+  {% endfor %}
+</table>
+{% endblock main %}
