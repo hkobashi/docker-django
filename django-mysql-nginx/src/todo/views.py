@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import TodoModel
+from todo.forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -26,7 +27,7 @@ def show(request, Todo_id):
   template = "Todo/show.html"
   return render(request, template, {'Todo': Todo})
 
-@login_required
+#@login_required
 def create(request):
   if request.method == "POST":
     copied = request.POST.copy()
@@ -37,7 +38,7 @@ def create(request):
       return redirect('Todo_index')
   # GETメソッドでTodoForm呼び出し
   form = TodoForm
-  return render(request, "Todo/create.html", {'form': form})
+  return render(request, "todo/create.html", {'form': form})
 
 @login_required
 def update(request, Todo_id):

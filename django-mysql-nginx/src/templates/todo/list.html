@@ -4,5 +4,6 @@
   {% for todo in todo_list %}
     {{ todo.title }}
     <!-- {{ todo.memo }} -->
+    <a href="{% url 'new' %}">新規作成</a>
   {% endfor %}
 {% endblock main %}
