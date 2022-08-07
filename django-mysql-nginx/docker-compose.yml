@@ -21,7 +21,7 @@ services:
 
   app:
     build: ./python
-    # --moduleにはプロジェクト作成時に生成されるwsgi.pyを指定する
+    # --moduleにはdjangoのプロジェクト名を指定する
     command: uwsgi --socket :8001 --module config.wsgi --py-autoreload 1 --logto /tmp/tmp.log
     volumes:
       - ./src:/workspace
