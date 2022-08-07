@@ -4,23 +4,20 @@
 <table class="table table-striped">
   <tr>
     <th>タイトル</th>
-    <td>{{ review.title }}</td>
+    <td>{{ todo.title }}</td>
     
   </tr>
   <tr>
-    <th>レビュー</th>
-    <td>{{ review.body }}</td>
-  </tr>
-  <tr>
-    <th>投稿者</th>
-    <td>{{ review.user }}</td>
-<div>
-    {% if review.appendedPicture %}
-    <img src="{{ review.appendedPicture.url }}" >
+    <th>メモ</th>
+    <td>{{ todo.memo }}
+  </td>
+<!-- <div>
+    {% if todo.appendedPicture %}
+    <img src="{{ todo.appendedPicture.url }}" >
   {% endif %}
-</div>
+</div> -->
 
   </tr>
-  <a href="{% url 'review_index' %}" class="btn btn-secondary">一覧に戻る</a>
+  <a href="{% url 'todo_index' %}" class="btn btn-secondary">一覧に戻る</a>
 </table>
 {% endblock main %}

@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import TodoModel
-from todo.forms import TodoForm
+from .forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -21,12 +21,6 @@ def index(request):
     return render(request, template, {'todo_list': result})
   return render(request, template, {'todo_list': todo_list})
 
-def show(request, Todo_id):
-  Todo = get_object_or_404(Todo, pk=Todo_id)
-#  user = Todo.user
-  template = "Todo/show.html"
-  return render(request, template, {'Todo': Todo})
-
 #@login_required
 def create(request):
   if request.method == "POST":
@@ -35,25 +29,31 @@ def create(request):
     form = TodoForm(copied, request.FILES)
     if form.is_valid():
       form.save()
-      return redirect('Todo_index')
+      return redirect('todo_index')
   # GETメソッドでTodoForm呼び出し
   form = TodoForm
   return render(request, "todo/create.html", {'form': form})
 
-@login_required
-def update(request, Todo_id):
-  Todo = get_object_or_404(Todo, pk=Todo_id)
+def show(request, todo_id):
+  todo = get_object_or_404(TodoModel, pk=todo_id)
+#  user = Todo.user
+  template = "todo/show.html"
+  return render(request, template, {'todo': todo})
+
+#@login_required
+def update(request, todo_id):
+  Todo = get_object_or_404(Todo, pk=todo_id)
   template = "Todo/update.html"
   if request.method == "POST":
     form = TodoForm(request.POST, instance=Todo)
     if form.is_valid():
       form.save()
-      return redirect('Todo_index')
+      return redirect('todo_index')
   form = TodoForm(instance=Todo)
-  return render(request, template, {'form': form, 'Todo_id': Todo_id})
+  return render(request, template, {'form': form, 'todo_id': todo_id})
 
-@login_required
-def delete(request, Todo_id):
-  Todo = get_object_or_404(Todo, pk=Todo_id)
+#@login_required
+def delete(request, todo_id):
+  Todo = get_object_or_404(Todo, pk=todo_id)
   Todo.delete()
-  return redirect('Todo_index')
+  return redirect('todo_index')

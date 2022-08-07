@@ -2,8 +2,17 @@
 
 {% block main %}
   {% for todo in todo_list %}
-    {{ todo.title }}
-    <!-- {{ todo.memo }} -->
-    <a href="{% url 'new' %}">新規作成</a>
+    <tr>
+      <a href="{% url 'todo_show' todo.id %}" class="btn btn-info">
+        <tr>
+          <td>{{ todo.title }}</td>
+        </tr>
+        <tr>
+          <td>{{ todo.memo }}
+        </td>
+      </a>
+    </tr>
   {% endfor %}
+  
+  <a href="{% url 'todo_create' %}">新規作成</a>
 {% endblock main %}
