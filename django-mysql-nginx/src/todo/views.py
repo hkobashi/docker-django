@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import TodoModel
-from todo.forms import TodoForm
+from .forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -35,7 +35,7 @@ def create(request):
     form = TodoForm(copied, request.FILES)
     if form.is_valid():
       form.save()
-      return redirect('Todo_index')
+      return redirect('todo_index')
   # GETメソッドでTodoForm呼び出し
   form = TodoForm
   return render(request, "todo/create.html", {'form': form})
