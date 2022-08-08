@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<form action="{% url 'review_update' review_id %}" method="POST">
+<form action="{% url 'todo_update' todo_id %}" method="POST">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit" class="btn btn-primary">保存</button>
-  <a href="{% url 'review_index' %}" class="btn btn-secondary">一覧に戻る</a>
+  <a href="{% url 'todo_index' %}" class="btn btn-secondary">一覧に戻る</a>
 </form>
 {% endblock main %}

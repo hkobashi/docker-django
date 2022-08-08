@@ -42,14 +42,14 @@ def show(request, todo_id):
 
 #@login_required
 def update(request, todo_id):
-  Todo = get_object_or_404(Todo, pk=todo_id)
-  template = "Todo/update.html"
+  todo = get_object_or_404(TodoModel, pk=todo_id)
+  template = "todo/update.html"
   if request.method == "POST":
-    form = TodoForm(request.POST, instance=Todo)
+    form = TodoForm(request.POST, instance=todo)
     if form.is_valid():
       form.save()
       return redirect('todo_index')
-  form = TodoForm(instance=Todo)
+  form = TodoForm(instance=todo)
   return render(request, template, {'form': form, 'todo_id': todo_id})
 
 #@login_required

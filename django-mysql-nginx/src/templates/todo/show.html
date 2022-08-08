@@ -18,6 +18,7 @@
 </div> -->
 
   </tr>
+  <a href="{% url 'todo_update' todo.id %}">更新</a>
   <a href="{% url 'todo_index' %}" class="btn btn-secondary">一覧に戻る</a>
 </table>
 {% endblock main %}
