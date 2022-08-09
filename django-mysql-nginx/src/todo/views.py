@@ -54,6 +54,6 @@ def update(request, todo_id):
 
 #@login_required
 def delete(request, todo_id):
-  Todo = get_object_or_404(Todo, pk=todo_id)
-  Todo.delete()
+  todo = get_object_or_404(TodoModel, pk=todo_id)
+  todo.delete()
   return redirect('todo_index')
